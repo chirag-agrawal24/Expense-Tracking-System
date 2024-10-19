@@ -3,4 +3,3 @@ __pycache__
 *.log
 run_app.spec
 build
-dist
