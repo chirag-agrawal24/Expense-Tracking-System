@@ -31,7 +31,7 @@ def analytics_by_month_tab():
 
             if response2.status_code==200:
                     df=pd.DataFrame(response2.json())
-                    print(df)
+                    
                     # Create a line chart with Altair
                     line_chart = alt.Chart(df,mark='line',).encode(
                         x=alt.X('month_name', sort=None),  # To keep the month order

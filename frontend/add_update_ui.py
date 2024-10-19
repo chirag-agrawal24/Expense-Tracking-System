@@ -15,7 +15,7 @@ def add_update_tab():
     if 'selected_date' not in st.session_state:
         st.session_state.selected_date = date.today()
 
-    selected_date = st.date_input("Enter Date:", st.session_state.selected_date, label_visibility="collapsed",key=f"selected_date")
+    selected_date = st.date_input("Enter Date:", value=st.session_state.selected_date, label_visibility="collapsed",key=f"selected_date")
     response = requests.get(f"{BACKEND_URL}/expenses/{selected_date}")
 
     if response.status_code == 200:
