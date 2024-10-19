@@ -1,5 +1,6 @@
 import streamlit as st
 from datetime import date
+from time import time
 import requests
 
 BACKEND_URL = "http://localhost:8000"
@@ -13,7 +14,7 @@ def add_update_tab():
     if 'selected_date' not in st.session_state:
         st.session_state.selected_date = date.today()
 
-    selected_date = st.date_input("Enter Date:", st.session_state.selected_date, label_visibility="collapsed",key="selected_date")
+    selected_date = st.date_input("Enter Date:", st.session_state.selected_date, label_visibility="collapsed",key=f"selected_date")
     response = requests.get(f"{BACKEND_URL}/expenses/{selected_date}")
 
     if response.status_code == 200:
@@ -78,6 +79,6 @@ def add_update_tab():
             else:
                 st.error("Failed to update Expenses")
 
-
-# Call the function to display the form
-add_update_tab()
+if __name__=="__main__":
+    # Call the function to display the form
+    add_update_tab()

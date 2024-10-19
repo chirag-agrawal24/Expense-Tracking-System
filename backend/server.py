@@ -1,7 +1,7 @@
 from fastapi import FastAPI,HTTPException
 from datetime import date
 import db_helper
-from pydantic import BaseModel
+from pydantic import BaseModel, conint
 from typing import List
 
 app=FastAPI()
@@ -15,6 +15,11 @@ class Expenses(BaseModel):
 class DateRange(BaseModel):
     start_date : date
     end_date :date
+
+
+# Define a Pydantic model for year validation
+class YearRequest(BaseModel):
+    year: conint(ge=1900, le=2100)  # Year must be an integer between 1900 and 2100
 
 @app.get("/expenses/{expense_date}",response_model=List[Expenses])
 def get_expensed(expense_date: date):
@@ -51,3 +56,12 @@ def get_analytics(date_range : DateRange):
             }
 
     return breakdown
+
+@app.post("/analytics_by_month/")
+def get_analytics_by_month(year:YearRequest):
+    summary_data=db_helper.fetch_expense_by_month(year.year)
+    
+    if summary_data is None:
+        raise HTTPException(500,"Failed to retrieve data")
+    
+    return summary_data
