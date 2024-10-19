@@ -3,6 +3,8 @@ from datetime import date
 import db_helper
 from pydantic import BaseModel, conint
 from typing import List
+import json
+import pandas as pd
 
 app=FastAPI()
 
@@ -65,3 +67,30 @@ def get_analytics_by_month(year:YearRequest):
         raise HTTPException(500,"Failed to retrieve data")
     
     return summary_data
+
+
+
+
+@app.post('/monthly_trend/')
+def get_monthly_trend(year:YearRequest):
+    summary_data=db_helper.fetch_expense_monthly_trend(year.year)
+
+    if summary_data is None:
+        raise HTTPException(500,"Failed to retrieve data")
+
+    df = pd.DataFrame(summary_data).drop(['month_no'],axis=1)
+    unique_categories = json.load(open("../categories.json"))['categories']
+
+    unique_months = df['month_name'].unique()
+
+    full_index = pd.MultiIndex.from_product(
+        [unique_months, unique_categories],
+        names=['month_name', 'category']
+    )
+
+    full_df = pd.DataFrame(index=full_index).reset_index()
+    merged_df = pd.merge(full_df, df, on=['month_name', 'category'], how='left')
+
+    merged_df['Amount'] = merged_df['Amount'].fillna(0)
+
+    return merged_df.to_dict()

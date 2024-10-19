@@ -6,3 +6,4 @@ pydantic==1.10.12
 pandas==2.1.4
 requests==2.31.0
 pytest==7.4.0
+json==2.0.9

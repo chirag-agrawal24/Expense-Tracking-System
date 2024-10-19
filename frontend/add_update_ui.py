@@ -2,6 +2,7 @@ import streamlit as st
 from datetime import date
 from time import time
 import requests
+import json
 
 BACKEND_URL = "http://localhost:8000"
 
@@ -29,7 +30,7 @@ def add_update_tab():
 
     with st.form(key="expense_form"):
 
-        categories = ["Rent", "Food", "Shopping", "Entertainment", "Other"]  # make it dynamic (user can add more categories)
+        categories = json.load(open("../categories.json"))['categories']
         col1, col2, col3 = st.columns(3)
         col1.subheader("Amount")
         col2.subheader("Category")

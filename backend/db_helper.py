@@ -74,6 +74,25 @@ def fetch_expense_by_month(year):
         data = cursor.fetchall()
         return data
 
+def fetch_expense_monthly_trend(year):
+    logger.info(f"fetch_expense_by_monthly_trend is called with YEAR:{year}")
+    with get_db_cursor() as cursor:
+        
+        cursor.execute("""select
+                                month(expense_date) as month_no,
+                                monthname(expense_date) as month_name,
+                                category,
+                                sum(amount) as Amount
+                            from expenses
+                            where YEAR(expense_date)=%s
+                            group by month(expense_date),monthname(expense_date),category
+                            order by month_no
+                            """,(year,))
+        data = cursor.fetchall()
+        return data
+    
+
+
 if __name__=="__main__":
     # expenses=fetch_expenses_for_date("2024-08-02")
     # print(expenses)
