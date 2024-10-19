@@ -7,7 +7,7 @@ import json
 BACKEND_URL = "http://localhost:8000"
 
 
-
+@st.fragment()
 def add_update_tab():
     # Initialize session state for tracking the number of rows
     if 'num_rows' not in st.session_state:
@@ -26,7 +26,7 @@ def add_update_tab():
     add_row_button = st.button("Add Row")
     if add_row_button:
         st.session_state.num_rows += 1  # Increment the number of rows
-        st.rerun()
+        st.rerun(scope="fragment")
 
     with st.form(key="expense_form"):
 
@@ -64,8 +64,6 @@ def add_update_tab():
                 'category': category_input,
                 'notes': notes_input
             })
-
-        # Add button to allow user to add more rows
 
 
         submit_button = st.form_submit_button("Submit")

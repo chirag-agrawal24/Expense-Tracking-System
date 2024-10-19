@@ -1,18 +1,17 @@
 import mysql.connector
 from contextlib import contextmanager
 from logging_setup import setup_logger
+import json
 
 logger=setup_logger("db_helper")
 
 @contextmanager
 def get_db_cursor(commit=False):
+    with open("sql.json") as con:
+        connection_dict=json.load(con)
 
     connection=mysql.connector.connect(
-        host="localhost",
-        port=3306,
-        user="root",
-        password="root",
-        database="expense_manager"
+        **connection_dict
     )
     # cursor is to read / write data
     cursor = connection.cursor(dictionary=True)
