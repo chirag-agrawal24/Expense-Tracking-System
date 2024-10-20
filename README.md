@@ -1,5 +1,5 @@
 # Expense Management System
-This is an Expense management system with streamlit as Frontend , FastAPI as Backend and MySQL as Databaase.
+This is an Expense management system with streamlit as Frontend , FastAPI as Backend and MySQL as Database.
 
 ## Project Structure
 
@@ -85,3 +85,26 @@ If you need to recreate the executable file, follow these steps:
 - Ensure that your MySQL server is running before launching the application.
 - For testing, navigate to the `tests/` directory and run the respective test files to ensure everything is functioning correctly.
   
+
+## Screenshots
+
+Below are screenshots showcasing various features of the Expense Management System.
+
+### Add/Update Page & Analytics By Categories
+
+| Add/Update Page                     | Analytics By Categories              |
+|-------------------------------------|--------------------------------------|
+| ![Add/Update](screenshots/add_update_ui.png) | ![Analytics By Categories](screenshots/analytics_by_category_ui.png) |
+| *Form for entering new expenses.*   | *Detailed view of expense reports.*  |
+
+### Monthly Analytics and Category Management
+
+| Monthly Analytics Page              | Monthly Analytics Page (Alternative View) |
+|-------------------------------------|--------------------------------------|
+| ![Monthly Analytics](screenshots/monthly_analytics_ui1.png) | ![Monthly Analytics 2](screenshots/monthly_analytics_ui2.png) |
+| *Detailed view of monthly expense reports.*   | *Another perspective of monthly analytics.*  |
+
+| Category Management                  |
+|--------------------------------------|
+| ![Category Management](screenshots/manage_categories_ui.png) |
+| *Form for entering new category options.*  |
