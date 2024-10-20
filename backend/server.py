@@ -77,7 +77,8 @@ def get_monthly_trend(year:YearRequest):
 
     if summary_data is None:
         raise HTTPException(500,"Failed to retrieve data")
-
+    if len(summary_data)<=0:
+        return summary_data
     df = pd.DataFrame(summary_data).drop(['month_no'],axis=1)
     unique_categories = json.load(open("../categories.json"))['categories']
 
