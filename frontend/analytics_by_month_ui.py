@@ -6,7 +6,7 @@ import altair as alt
 
 BACKEND_URL="http://localhost:8000"
 
-
+@st.fragment()
 def analytics_by_month_tab():
     select_year=st.number_input("Select the Year", min_value=2000, max_value=2100, value=date.today().year)
 
@@ -29,7 +29,7 @@ def analytics_by_month_tab():
             st.bar_chart(df_sorted,x='Month',y='Amount',)
             st.table(df_sorted.style.format(precision=2))
 
-            if response2.status_code==200:
+            if response2.status_code==200 and len(response2.json())>0:
                     df=pd.DataFrame(response2.json())
                     
                     # Create a line chart with Altair

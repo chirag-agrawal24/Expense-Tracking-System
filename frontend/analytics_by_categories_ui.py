@@ -5,7 +5,7 @@ import pandas as pd
 
 BACKEND_URL="http://localhost:8000"
 
-
+@st.fragment()
 def analytics_by_categories_tab():
     col1,col2=st.columns(2)
     with col1:
