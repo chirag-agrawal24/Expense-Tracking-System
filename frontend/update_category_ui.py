@@ -9,8 +9,12 @@ def load_categories():
 
 # Save updated categories to the JSON file
 def save_categories(categories):
+    with open("../categories.json", "r") as file:
+        data = json.load(file)
+    data['categories'] = categories  # Only update the regular categories
     with open("../categories.json", "w") as file:
-        json.dump({"categories": categories}, file)
+        json.dump(data, file)
+
 
 # Function to manage the categories
 @st.fragment()

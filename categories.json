@@ -1,1 +1,5 @@
-{"categories": ["Rent", "Food", "Shopping", "Entertainment", "Other"]}
+{
+    "categories": ["Rent", "Food", "Shopping", "Entertainment"],
+    "permanent_categories": ["Other"]
+  }
+  

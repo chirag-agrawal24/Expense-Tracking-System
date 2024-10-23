@@ -80,7 +80,8 @@ def get_monthly_trend(year:YearRequest):
     if len(summary_data)<=0:
         return summary_data
     df = pd.DataFrame(summary_data).drop(['month_no'],axis=1)
-    unique_categories = json.load(open("../categories.json"))['categories']
+    category_data=json.load(open("../categories.json"))
+    unique_categories = category_data['categories']+category_data['permanent_categories']
 
     unique_months = df['month_name'].unique()
 
