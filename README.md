@@ -46,6 +46,7 @@ You can run the application using two methods:
 
 1. Navigate to the `dist` folder created by PyInstaller.
 2. Double-click on `run_app.exe` to launch the application. This eliminates the need to handle opening or closing the app separately.
+3. You can also create a shortcut for this exe file. 
 
 #### To Recreate the Executable File
 
